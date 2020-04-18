@@ -41,5 +41,15 @@ const args = require('minimist')(process.argv.slice(2,3));
 // }
 // measureDoingSomething()
 
-const chalk = require('chalk')
-console.log(chalk.yellowBright.bgGreen('Brazil'))
+// const chalk = require('chalk')
+// console.log(chalk.yellowBright.bgGreen('Brazil'))
+
+const ProgressBar = require('progress')
+
+const bar = new ProgressBar(':bar', { total: 100 })
+const timer = setInterval(() => {
+  bar.tick()
+  if (bar.complete) {
+    clearInterval(timer)
+  }
+}, 100)
