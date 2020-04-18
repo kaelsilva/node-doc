@@ -21,11 +21,25 @@ app.get('/', (req, res) => res.send(process.env.LOGNAME));
 
 const server = app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
 
-process.on('SIGTERM', () => {
-    server.close(() => {
-      console.log('Process terminated')
-    })
-})
+const args = require('minimist')(process.argv.slice(2,3));
 
-clearTimeout();
-setTimeout(()=>process.kill(process.pid, 'SIGTERM'), 10000);
+// args.forEach((val, index)=>console.log(`${index}: ${val}`));
+// console.log(args['name']);
+
+// process.argv.forEach((val, index) => {
+//   console.log(`${index}: ${val}`)
+// })
+
+// console.log('%o', Number);
+
+// const doSomething = () => console.log('test')
+// const measureDoingSomething = () => {
+//   console.time('doSomething()')
+//   //do something, and measure the time it takes
+//   doSomething()
+//   console.timeEnd('doSomething()')
+// }
+// measureDoingSomething()
+
+const chalk = require('chalk')
+console.log(chalk.yellowBright.bgGreen('Brazil'))
