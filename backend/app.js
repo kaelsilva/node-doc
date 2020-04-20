@@ -8,14 +8,18 @@ const car = require('./car');
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
 
+const fetchCar = async () => {
+  const carFetched = await require('./car.js');
+  console.log('Car found!');
+  return carFetched;
+};
 
-const first = new Promise((resolve, reject) => {
-  setTimeout(resolve, 500, 'first')
-})
-const second = new Promise((resolve, reject) => {
-  setTimeout(resolve, 100, 'second')
-})
+const fetchNow = async () => {
+  const myCar = await fetchCar();
+  console.log(myCar.brand);
+  console.log(myCar.model);
+}
 
-Promise.race([first, second]).then(result => {
-  console.log(result) // second
-})
+console.log('Before');
+fetchNow();
+console.log('After');
