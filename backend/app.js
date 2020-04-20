@@ -6,20 +6,13 @@ const car = require('./car');
 
 // app.get('/', (req, res) => res.send(`${car.brand} ${car.model}`));
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
+// app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
 
-const fetchCar = async () => {
-  const carFetched = await require('./car.js');
-  console.log('Car found!');
-  return carFetched;
-};
+const EventEmitter = require('events')
+const eventEmitter = new EventEmitter()
 
-const fetchNow = async () => {
-  const myCar = await fetchCar();
-  console.log(myCar.brand);
-  console.log(myCar.model);
-}
+eventEmitter.on('start', () => {
+  console.log('started')
+})
 
-console.log('Before');
-fetchNow();
-console.log('After');
+eventEmitter.emit('start')
